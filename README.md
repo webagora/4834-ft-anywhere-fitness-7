@@ -59,6 +59,6 @@ Instructors can take attendance, request and process payments, create virtual â€
 1. Implement payments using PayPal, Stripe or another 3rd party API.
 
 
-# [<p align="center">front-end readme</p>](./front-end/README.md)
+## [<p align="center">front-end readme</p>](./front-end/README.md)
 
-# [<p align="center">back-end endpoints API</p>](./back-end/README.md)
+## [<p align="center">back-end endpoints API</p>](./back-end/README.md)
