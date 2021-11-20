@@ -1,5 +1,5 @@
 import Login from "./components/Login";
-
+import Logout from "./components/Logout";
 import ClassList from "./components/ClassList";
 import Class from "./components/Class"
 
@@ -33,7 +33,7 @@ function App() {
         <Switch>
               {/* <Route exact path="/"> <Home  /> </Route>         */}
               <Route path="/login"> <Login setIsLoggedIn = { setIsLoggedIn } isLoggedIn = { isLoggedIn } role = {role} message = {message} /> </Route> 
-              {/* <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route>  */}
+              <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route> 
               {/* <Route path="/register"> <Register /> </Route>  */}
               {/* <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} /> */}
               {/* <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>  */}
