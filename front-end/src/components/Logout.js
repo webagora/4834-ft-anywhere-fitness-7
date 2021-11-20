@@ -7,16 +7,16 @@ const Logout = (props)=> {
 
     const { push } = useHistory();
 
-    const getLogOut = () => {
+    useEffect(()=>{
+        
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("message");
         props.setIsLoggedIn(localStorage.getItem('token'));    
 
         push ("/login");      
-    } 
 
-    getLogOut();
+      }, []);    
 
         return(<div></div>);
 }

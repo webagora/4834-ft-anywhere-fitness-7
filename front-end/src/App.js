@@ -3,7 +3,7 @@ import Logout from "./components/Logout";
 import ClassList from "./components/ClassList";
 import Class from "./components/Class"
 
-import {Route, Switch } from 'react-router-dom';
+import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 
 function App() {
@@ -37,6 +37,10 @@ function App() {
               {/* <Route path="/register"> <Register /> </Route>  */}
               {/* <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} /> */}
               {/* <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>  */}
+
+              {/* <Route path="/">
+                <Redirect to="/login"/>
+              </Route> */}
 
               <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route>
               <Route path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /> </Route> 
