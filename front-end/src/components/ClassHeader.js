@@ -5,18 +5,24 @@ const handleClick = () => {
     // toggleFavorites();
 }
 
-const displayFavorites = false;
 
-const ClassHeader = ()=> {
+const ClassHeader = (props)=> {
+    const {displayFavorites, isLoggedIn, role, message} = props;
+
     return(<div className="table-title">
         <div className="row">
         <div className="col-sm-6">
-            <h2>IMDB Movie Database</h2>
+            {isLoggedIn && <h2>{message}, a {role} </h2>}
+            {!isLoggedIn && <h2> Yor are Welcom, wanna to join? </h2>}
         </div>
         <div className="col-sm-6">
-            <div onClick = {handleClick} className="btn btn-sm btn-primary"><span>{ displayFavorites ? "Hide" : "Show"} Favorites</span></div>
-            {/* <Link className="btn btn-success"><i className="material-icons">&#xE147;</i> <span>Add New Movie</span></Link>
-            <Link to="/movies" className="btn btn-primary">View All Movies</Link> */}
+            {(role === 'client' && isLoggedIn) && <div onClick = {handleClick} className="btn btn-sm btn-primary"><span>{ displayFavorites ? "Hide" : "Show"} favorites</span></div>};
+            {(role === 'instructor' && isLoggedIn) && <div onClick = {handleClick} className="btn btn-sm btn-primary"><span>{ displayFavorites ? "Hide" : "Show"} favorites</span></div>};
+            {/* {(role === 'client' && isLoggedIn) && <Link to = "#" className="btn btn-success"><i className="material-icons">&#xE147;</i> <span>Join New Class</span></Link>} */}
+            {/* {(role === 'instructor' && isLoggedIn) && <Link to = "#" className="btn btn-success"><i className="material-icons">&#xE147;</i> <span>Add New Class</span></Link>} */}
+            {(role === 'client' && isLoggedIn) && <Link to ="/classes" className="btn btn-primary">View All joined</Link>}
+            {(role === 'instructor' && isLoggedIn) && <Link to ="/classes" className="btn btn-primary">View teaching</Link>}
+            {isLoggedIn && <Link to ="/classes" className="btn btn-primary">View All Classes</Link>}
         </div>
         </div>
     </div>);

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import ClassList from "./ClassList"
 // can not replace real url in post, figure out later
 import { BASE_URL, API_KEY } from '../utils/URL';  
 
 // console.log('BASE_URL: ', BASE_URL);
 
-export default function Login (props){
-        const { isLoggedIn, role, message, setIsLoggedIn } = props; 
+export default function Login (props){        
         
         const { push } = useHistory();
 
@@ -44,11 +42,8 @@ export default function Login (props){
         return (<>
                            
             <nav className="nav-bar">
-                <div className="left-links">
-                    <Link className="link" to='/'>Anywhere Fitness</Link>                              
-                </div>
-                <div className="right-links">
-                    { !props.isLoggedIn  && <div className="link"  > <Link className="link"  to='/register' >Register</Link></div>} </div>
+                <div className="left-links"> <Link className="link" to='/'><h2>Anywhere Fitness</h2> </Link> </div>
+                <div className="right-links"> { !props.isLoggedIn  && <div className="link"  > <Link className="link"  to='/register' ><h4>Register</h4></Link></div>} </div> 
             </nav>   
                     
                 <div  >

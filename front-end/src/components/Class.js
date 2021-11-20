@@ -7,7 +7,7 @@ import FavoriteClassList from './FavoriteClassList';
 
 const Class = (props) => {   
     
-    const { favoriteClasses } = props;
+    const {isLoggedIn, role, message, favoriteClasses } = props;
     
     const [session, setSession] = useState('');
 
@@ -34,20 +34,15 @@ const Class = (props) => {
    
     return(<>
         <nav className="nav-bar">
-            <div className="left-links">
-                <Link className="link" to='/'>Anywhere Fitness &nbsp; {props.message}  </Link>                                                 
-            </div>
-            <div className="right-links">                                                         
-                {(props.role === 'instructor' && props.isLoggedIn) && <Link className="link"  to='/create'>Create a Class</Link>  }                 
-                {(props.role === 'client' && props.isLoggedIn) && <Link className="link"  to='/create'>Jion a Class</Link> }             
-                {props.isLoggedIn && <Link className="link" to='/logout'>Logout</Link>}                       
-            </div>
+            <div className="left-links"> <Link className="link" to='/'><h2>Anywhere Fitness</h2> </Link> </div>
+            <div className="right-links"> {props.isLoggedIn && <Link className="link" to='/logout'><h4>Logout</h4></Link>} 
+            {!props.isLoggedIn && <Link className="link"  to='/login'> <h4>Login</h4> </Link> } </div> 
         </nav>
 
         <div className="container">
-            <ClassHeader/>
+            <ClassHeader isLoggedIn={isLoggedIn} role={role} message={message} />
             <div className="row ">
-                <FavoriteClassList favoriteClasses={favoriteClasses}/>
+                {isLoggedIn && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
     
                 <div className="modal-page col">
                     <div className="modal-dialog">
@@ -72,10 +67,11 @@ const Class = (props) => {
                                     </section>
                                     <section>
                                         <div>
-                                            <span className="m-2 btn btn-dark">Add Class</span>
-                                                
-                                                <Link to={`/classes/${class_id}`} className="m-2 btn btn-success">Edit</Link>
-                                            <span className="delete" onClick = {handelDelete}  ><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>
+                                            {(role === 'instructor' && isLoggedIn) && <span className="m-2 btn btn-dark">Create New Class</span>}                                                
+                                            {(role === 'client' && isLoggedIn) && <span className="m-2 btn btn-dark">Join Class</span>}                                                
+                                            {(role === 'instructor' && isLoggedIn) && <Link to={`/classes/${class_id}`} className="m-2 btn btn-success">Edit</Link>}
+                                            {(role === 'instructor' && isLoggedIn) && <span className="delete" onClick = {handelDelete}  ><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>}
+                                            {!isLoggedIn && <Link to={`/classes/`} className="m-2 btn btn-dark">View All joined</Link>}
                                         </div>
                                     </section>       
 

@@ -7,9 +7,11 @@ import FavoriteClassList from './FavoriteClassList';
 
 
 const ClassList = (props)=> {
-    const { classes, setClasses, favoriteClasses } = props;
+    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses } = props;
 
-    useEffect(()=>{
+    console.log('props in ClassList: ', props);
+
+    useEffect(() => {
         axiosWithAuth()
             .get('/classes/')          
             .then (resp => {                
@@ -24,27 +26,25 @@ const ClassList = (props)=> {
     return (<>
         
         <nav className="nav-bar">
-            <div className="left-links"> <Link className="link" to='/'>Anywhere Fitness </Link> </div>
-            <div className="right-links"> {props.isLoggedIn && <Link className="link" to='/logout'>Logout</Link>} </div>
+            <div className="left-links"> <Link className="link" to='/'><h2>Anywhere Fitness</h2> </Link> </div>
+            <div className="right-links"> {props.isLoggedIn && <Link className="link" to='/logout'><h4>Logout</h4></Link>} 
+            { !props.isLoggedIn && <Link className="link"  to='/login'> <h4>Login</h4> </Link> } </div> 
         </nav>            
 
         <div className="container">            
-            <ClassHeader/>
+            <ClassHeader isLoggedIn={isLoggedIn} role={role} message={message} />
             <div className="row ">
-                <FavoriteClassList favoriteClasses={favoriteClasses}/>
-
+                {isLoggedIn && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
                 <div className="col">
                     <table className="table table-striped table-hover">
                         <thead>
                         <tr>
-                        <th>Name</th>
-                                <th>Intensity</th>
-                                <th>Instructor</th>
-                                <th>Location</th>
-                                <th></th>
+                            <th>Name</th>
+                            <th>Intensity</th>
+                            <th>Instructor</th>
+                            <th>Location</th>                                
                         </tr>
                         </thead>
-
                         <tbody>
                             {
                                 classes.map(session=><ClassListSession key={session.id} session={session}/>)
