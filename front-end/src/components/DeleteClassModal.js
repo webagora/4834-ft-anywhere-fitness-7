@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteMovieModal = () => {
+const DeleteClassModal = () => {
     return (<div id="deleteMovieModal">
         <div className="modal-dialog">
             <div className="modal-content">
@@ -23,4 +23,4 @@ const DeleteMovieModal = () => {
     </div>)
 }
 
-export default DeleteMovieModal;
+export default DeleteClassModal;
