@@ -1,0 +1,21 @@
+.register-container {
+    padding: 3.5%;
+}
+.register-here {
+    margin: 3%;
+}
+.enter-information {
+    margin: 1%;
+}
+.register-inputs {
+    margin: 1%;
+}
+.register-button {
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    background-color: #a7c5cf;
+    border-radius: 6px;
+    outline: none;
+    padding: .5%;
+}

@@ -1,0 +1,38 @@
+.class-wrapper{
+    margin: 2%;
+    margin-right: 65%;
+    padding: 1%;
+    background-color: rgb(96, 163, 163);
+}
+.intensity{
+    margin: 2%;
+    margin-bottom: 3%;
+}
+.date{
+    margin: 2%;
+}
+.time{
+    margin: 2%;
+}
+.instructor{
+    margin: 2%;
+}
+.location{
+    margin: 2%;
+}
+.join-class {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    background-color: #a7c5cf;
+    border-radius: 6px;
+    outline: none;
+    padding: 1%;
+}
+.join-class:hover {
+    color: #000000;
+}
