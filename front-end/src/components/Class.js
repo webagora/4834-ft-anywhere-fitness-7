@@ -16,6 +16,10 @@ const Class = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
+    console.log('id in Class: ', id);
+
+    
+
     useEffect(() => {
             axiosWithAuth()
             .get(`/classes/${id}`)          
@@ -28,8 +32,19 @@ const Class = (props) => {
             
     }, [id]);
       
-    const handelDelete = ()=> {    
-
+    const handelDelete = ()=> {                  
+                   
+        axiosWithAuth()
+            .delete(`/classes/${id}`)          
+            .then (resp => {                
+                console.log('resp.data in handleDelete: ', resp.data);    
+                props.deleteClass(id);   
+                push(`/classes`);       
+            })
+            .catch(err => {
+                console.log(err);
+            })  
+           
     }
    
     return(<>

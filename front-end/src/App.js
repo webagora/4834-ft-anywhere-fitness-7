@@ -4,6 +4,9 @@ import ClassList from "./components/ClassList";
 import Class from "./components/Class";
 import AddClassForm from "./components/AddClassForm";
 
+import User from "./components/User";
+import UserList from "./components/UserList"
+
 import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 
@@ -25,6 +28,9 @@ function App() {
   }
 
   const deleteClass = (id)=> {
+    setClasses({
+      classes: classes.filter(session => session.id !== id)
+    })
     
   }
 
@@ -36,16 +42,18 @@ function App() {
               <Route path="/login"> <Login setIsLoggedIn = { setIsLoggedIn } isLoggedIn = { isLoggedIn } role = {role} message = {message} /> </Route> 
               <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route> 
               {/* <Route path="/register"> <Register /> </Route>  */}
-              {/* <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} /> */}
-              {/* <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>  */}
+              <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} />
+              <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route> 
 
-              {/* <Route path="/">
-                <Redirect to="/login"/>
-              </Route> */}
+              <Route
+              path="/classes/:id"
+              render={props => <Class {...props} deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  />}
+              // render={props => <Item match = {props.match} history = {props.history} setItems={setItems} />}
+              />
 
-              <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route>
+              {/* <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route> */}
               <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /> </Route>
-              <Route exact path='/classes/add'><AddClassForm setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
+              <Route path='/addclass'><AddClassForm setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
         </Switch>
         
         <div className="footer-page">

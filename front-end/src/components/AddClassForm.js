@@ -10,7 +10,7 @@ const AddClassForm = (props) => {
     console.log('push in AddClassForm: ', push);
 
     const [newClass, setNewClass] = useState({
-        class_name: "", class_duration: "", max_class_size: 0, class_date: "01/01/2021", start_time: "08:00 AM", class_location: "", class_instructor: 1, intensity_id: 1, type_id: 1
+        class_name: "TAI CHI basics", class_duration: "1 hour", max_class_size: 0, class_date: "2021-11-17T00:00:00.000Z", start_time: "08:00:00", class_location: "", class_instructor: 1, intensity_id: 1, type_id: 1
     });
 
     const handleChange = (e) => {
@@ -28,7 +28,7 @@ const AddClassForm = (props) => {
             .then (resp => {      
                 console.log('resp.data in AddForm.js: ', resp.data);          
                 setClasses(resp.data);
-                // push('/classes');
+                push('/classes');
             })
             .catch(err => {
                 console.log(err);
@@ -62,11 +62,11 @@ const AddClassForm = (props) => {
                             </div>
                             <div className="form-group">
                                 <label>Class date: </label>
-                                <input value={class_date} onChange={handleChange} name="class_date" type="date" className="form-control"/>
+                                <input value={class_date} onChange={handleChange} name="class_date" type="text" className="form-control"/>
                             </div>		
                             <div className="form-group">
                                 <label>Start time: </label>
-                                <input value={start_time} onChange={handleChange} name="start_time" type="time" className="form-control"/>
+                                <input value={start_time} onChange={handleChange} name="start_time" type="text" className="form-control"/>
                             </div>		
                             <div className="form-group">
                                 <label>Class location: </label>
