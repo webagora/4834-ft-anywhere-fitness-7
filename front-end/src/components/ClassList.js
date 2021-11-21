@@ -47,7 +47,7 @@ const ClassList = (props)=> {
                         </thead>
                         <tbody>
                             {
-                                classes.map(session=><ClassListSession key={session.id} session={session}/>)
+                                classes.map(session=><ClassListSession key={session.id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />)
                             }
                         </tbody>
                     </table>

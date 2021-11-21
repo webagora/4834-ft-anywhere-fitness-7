@@ -1,7 +1,8 @@
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import ClassList from "./components/ClassList";
-import Class from "./components/Class"
+import Class from "./components/Class";
+import AddClassForm from "./components/AddClassForm";
 
 import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
@@ -43,7 +44,8 @@ function App() {
               </Route> */}
 
               <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route>
-              <Route path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /> </Route> 
+              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /> </Route>
+              <Route exact path='/classes/add'><AddClassForm setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
         </Switch>
         
         <div className="footer-page">

@@ -67,11 +67,12 @@ const Class = (props) => {
                                     </section>
                                     <section>
                                         <div>
-                                            {(role === 'instructor' && isLoggedIn) && <span className="m-2 btn btn-dark">Create New Class</span>}                                                
+                                            {(role === 'instructor' && isLoggedIn) && <span className="m-2 btn btn-dark">Favorite</span>}                                                
                                             {(role === 'client' && isLoggedIn) && <span className="m-2 btn btn-dark">Join Class</span>}                                                
                                             {(role === 'instructor' && isLoggedIn) && <Link to={`/classes/${class_id}`} className="m-2 btn btn-success">Edit</Link>}
                                             {(role === 'instructor' && isLoggedIn) && <span className="delete" onClick = {handelDelete}  ><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>}
-                                            {!isLoggedIn && <Link to={`/classes/`} className="m-2 btn btn-dark">View All joined</Link>}
+                                            
+                                            {!isLoggedIn && <Link to={`/classes/`} className="view"> <input type="button" className="btn btn-secondary" value="View All Classes"/> </Link>}
                                         </div>
                                     </section>       
 

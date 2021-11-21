@@ -10,9 +10,7 @@ const ClassListSession = (props)=> {
         <td>{instructor}</td>
         <td>{class_location}</td>  
       <td>
-        <Link to={`/classes/${class_id}`} className="view">
-          <input type="button" className="btn btn-secondary" value="View"/>
-        </Link>
+        <Link to={`/classes/${class_id}`} className="view"> <input type="button" className="btn btn-secondary" value="View"/> </Link>          
       </td>
   </tr>);
 }
