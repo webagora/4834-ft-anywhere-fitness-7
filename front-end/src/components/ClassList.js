@@ -7,7 +7,7 @@ import FavoriteClassList from './FavoriteClassList';
 
 
 const ClassList = (props)=> {
-    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses } = props;
+    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses, displayFavorites } = props;
 
     console.log('props in ClassList: ', props);
 
@@ -34,7 +34,7 @@ const ClassList = (props)=> {
         <div className="container">            
             <ClassHeader isLoggedIn={isLoggedIn} role={role} message={message} />
             <div className="row ">
-                {isLoggedIn && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displayFavorites) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
                 <div className="col">
                     <table className="table table-striped table-hover">
                         <thead>
@@ -46,9 +46,9 @@ const ClassList = (props)=> {
                         </tr>
                         </thead>
                         <tbody>
-                            {
-                                
-                                classes.map(session=><ClassListSession key={session.id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />)
+                            {/* <div>{ console.log('classes in ClassList:', classes) }</div> */}
+                            {                                
+                                classes.map(session=><ClassListSession key={session.class_id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />)
                             }
                         </tbody>
                     </table>

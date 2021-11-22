@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
-
 import { Link, useHistory } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const AddClassForm = (props) => {
     const {isLoggedIn, role, classes, setClasses} = props;
 
     const { push } = useHistory();
-    console.log('push in AddClassForm: ', push);
-
+ 
     const [newClass, setNewClass] = useState({
-        class_name: "TAI CHI basics", class_duration: "1 hour", max_class_size: 0, class_date: "2021-11-17T00:00:00.000Z", start_time: "08:00:00", class_location: "", class_instructor: 1, intensity_id: 1, type_id: 1
+        class_name: "TAI CHI basics", 
+        class_duration: "1 hour", 
+        max_class_size: 20, 
+        class_date: "2001-11-17", 
+        start_time: "01:00:00", 
+        class_location: "", 
+        class_instructor: 5, 
+        intensity_id: 1, 
+        type_id: 1
     });
 
     const handleChange = (e) => {
@@ -22,19 +28,22 @@ const AddClassForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        console.log('newClass: ', newClass);
         axiosWithAuth()
             .post(`/classes/add`, newClass)          
             .then (resp => {      
                 console.log('resp.data in AddForm.js: ', resp.data);          
-                setClasses(resp.data);
-                push('/classes');
+                // setClasses(resp.data);
+                // The following code is really bad - !!!!
+                // setClasses(resp.data);
+                push('/');
             })
             .catch(err => {
                 console.log(err);
             })
     }
 
+    console.log('classes in AddForm: ', classes);
     const {class_name, class_duration, max_class_size, class_date, start_time, class_location, class_instructor, intensity_id, type_id } = newClass;
     
     return(
@@ -62,11 +71,11 @@ const AddClassForm = (props) => {
                             </div>
                             <div className="form-group">
                                 <label>Class date: </label>
-                                <input value={class_date} onChange={handleChange} name="class_date" type="text" className="form-control"/>
+                                <input value={class_date} onChange={handleChange} name="class_date" type="date" className="form-control"/>
                             </div>		
                             <div className="form-group">
                                 <label>Start time: </label>
-                                <input value={start_time} onChange={handleChange} name="start_time" type="text" className="form-control"/>
+                                <input value={start_time} onChange={handleChange} name="start_time" type="time" className="form-control"/>
                             </div>		
                             <div className="form-group">
                                 <label>Class location: </label>

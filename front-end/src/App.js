@@ -10,12 +10,13 @@ import UserList from "./components/UserList"
 import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 
-function App() {
+function App(props) {
+
+  const {displayFavorites }= props;
 
   // To carry the whole classes 
   const [classes, setClasses] = useState([]);
-  const [users, setUsers] = useState([]);
-  
+  const [users, setUsers] = useState([]);  
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'));
 
@@ -28,10 +29,9 @@ function App() {
   }
 
   const deleteClass = (id)=> {
-    setClasses({
-      classes: classes.filter(session => session.id !== id)
-    })
-    
+    setClasses(
+      classes.filter(session => session.id !== id)
+   )    
   }
 
   return (
@@ -43,7 +43,9 @@ function App() {
               <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route> 
               {/* <Route path="/register"> <Register /> </Route>  */}
               <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} />
-              <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route> 
+              <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>
+
+              <Route path='/classes/add'><AddClassForm classes = {classes} setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
 
               <Route
               path="/classes/:id"
@@ -52,8 +54,9 @@ function App() {
               />
 
               {/* <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route> */}
-              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /> </Route>
-              <Route path='/addclass'><AddClassForm setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
+              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displayFavorites = {displayFavorites}/> </Route>
+              
+              <Route path="/"> <Redirect to="/classes"/> </Route> 
         </Switch>
         
         <div className="footer-page">
