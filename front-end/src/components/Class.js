@@ -7,7 +7,7 @@ import FavoriteClassList from './FavoriteClassList';
 
 const Class = (props) => {   
     
-    const {isLoggedIn, role, message, favoriteClasses, displayFavorites  } = props;    
+    const {isLoggedIn, role, message, favoriteClasses, displaySideBar, setDisplaySideBar  } = props;    
     const [session, setSession] = useState('');
     const { class_id, class_name, intensity_level,class_date, start_time, class_duration, instructor, class_location} = session;
     const { id } = useParams();
@@ -50,9 +50,9 @@ const Class = (props) => {
         </nav>
 
         <div className="container">
-            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} />
+            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-            { (isLoggedIn && displayFavorites) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displaySideBar) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
     
                 <div className="modal-page col">
                     <div className="modal-dialog">

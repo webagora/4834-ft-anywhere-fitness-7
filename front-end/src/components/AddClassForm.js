@@ -6,7 +6,7 @@ import LoggedInHeader from './LoggedInHeader';
 import FavoriteClassList from './FavoriteClassList';
 
 const AddClassForm = (props) => {
-    const {isLoggedIn, role, message, classes, favoriteClasses, displayFavorites, setClasses} = props;
+    const {isLoggedIn, role, message, classes, setClasses, favoriteClasses, displaySideBar, setDisplaySideBar } = props;
 
     const { push } = useHistory();
  
@@ -56,9 +56,9 @@ const AddClassForm = (props) => {
         </nav>
 
         <div className="container">
-            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} />
+        <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displayFavorites) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displaySideBar) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
         
                 <div className="col">
                     <div className="modal-dialog">

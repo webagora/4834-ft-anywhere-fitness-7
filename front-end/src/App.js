@@ -11,24 +11,20 @@ import UserList from "./components/UserList"
 import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 
-function App(props) {
+const initialDisplay = false;
 
-  const {displayFavorites }= props;
+function App() {  
 
   // To carry the whole classes 
   const [classes, setClasses] = useState([]);
-  const [users, setUsers] = useState([]);  
-
+  const [users, setUsers] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'));
+  const [displaySideBar, setDisplaySideBar ] = useState (initialDisplay) ;
 
   // const isLoggedIn = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   const message = localStorage.getItem('message');
-
-  const deleteUser = (id)=> {
-    
-  }
-
+  
   const deleteClass = (id)=> {
     setClasses(
       classes.filter(session => session.id !== id)
@@ -46,16 +42,16 @@ function App(props) {
               <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} />
               <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>
 
-              <Route path='/classes/add'><AddClassForm classes = {classes} setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} /></Route> 
+              <Route path='/classes/add'><AddClassForm classes = {classes} setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar } /></Route> 
 
               <Route
               path="/classes/:id"
-              render={props => <Class {...props} deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  />}
+              render={props => <Class {...props} deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar }  />}
               // render={props => <Item match = {props.match} history = {props.history} setItems={setItems} />}
               />
 
               {/* <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route> */}
-              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displayFavorites = {displayFavorites}/> </Route>
+              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } /> </Route>
               
               <Route path="/"> <Redirect to="/classes"/> </Route> 
         </Switch>
