@@ -3,11 +3,11 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth'
 
 import LoggedInHeader from './LoggedInHeader';
-import FavoriteClassList from './FavoriteClassList';
+import SideBarClassList from './SideBarClassList';
 
 const Class = (props) => {   
     
-    const {isLoggedIn, role, message, favoriteClasses, displaySideBar, setDisplaySideBar  } = props;    
+    const {isLoggedIn, role, message, sideBarClasses, displaySideBar, setDisplaySideBar  } = props;    
     const [session, setSession] = useState('');
     const { class_id, class_name, intensity_level,class_date, start_time, class_duration, instructor, class_location} = session;
     const { id } = useParams();
@@ -52,7 +52,7 @@ const Class = (props) => {
         <div className="container">
             <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displaySideBar) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displaySideBar) && <SideBarClassList sideBarClasses={sideBarClasses}/>}
     
                 <div className="modal-page col">
                     <div className="modal-dialog">

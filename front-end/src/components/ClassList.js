@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import LoggedInHeader from './LoggedInHeader';
-import FavoriteClassList from './FavoriteClassList';
+import SideBarClassList from './SideBarClassList';
 import LoggedInFooter from './LoggedInFooter';
 
 
 const ClassList = (props)=> {
-    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses, displaySideBar, setDisplaySideBar } = props;    
+    const { isLoggedIn, role, message, classes, setClasses, sideBarClasses, displaySideBar, setDisplaySideBar } = props;    
 
     useEffect(() => {
         axiosWithAuth()
@@ -33,7 +33,7 @@ const ClassList = (props)=> {
         <div className="container">            
             <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displaySideBar) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displaySideBar) && <SideBarClassList role={role}  sideBarClasses={sideBarClasses}/>}
                 <div className="col">
                     <table className="table table-striped table-hover">
                         <thead>

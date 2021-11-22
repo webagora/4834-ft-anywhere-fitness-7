@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import LoggedInHeader from './LoggedInHeader';
-import FavoriteClassList from './FavoriteClassList';
+import SideBarClassList from './SideBarClassList';
 
 const AddClassForm = (props) => {
     const {isLoggedIn, role, message, classes, setClasses, favoriteClasses, displaySideBar, setDisplaySideBar } = props;
@@ -36,9 +36,9 @@ const AddClassForm = (props) => {
             .then (resp => {      
                 // console.log('resp.data in AddForm.js: ', resp.data);          
                 // setClasses(resp.data);
-                // The following code is really bad - !!!!
+                // The following code is -  cause classList map is not function
                 // setClasses(resp.data);
-                push('/');
+                push('/classes');
             })
             .catch(err => {
                 console.log(err);
@@ -58,7 +58,7 @@ const AddClassForm = (props) => {
         <div className="container">
         <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displaySideBar) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+                { (isLoggedIn && displaySideBar) && <SideBarClassList sideBarClasses={sideBarClasses}/>}
         
                 <div className="col">
                     <div className="modal-dialog">
