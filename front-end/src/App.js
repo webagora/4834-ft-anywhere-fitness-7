@@ -4,6 +4,7 @@ import ClassList from "./components/ClassList";
 import Class from "./components/Class";
 import AddClassForm from "./components/AddClassForm";
 
+import Footer from "./components/Footer";
 import User from "./components/User";
 import UserList from "./components/UserList"
 
@@ -60,7 +61,7 @@ function App(props) {
         </Switch>
         
         <div className="footer-page">
-          {/* <Footer/> */}
+          <Footer/>
         </div>
      
     </div>

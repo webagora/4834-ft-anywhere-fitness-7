@@ -2,20 +2,19 @@ import React, { useEffect } from 'react';
 import ClassListSession from './ClassListSession';
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import ClassHeader from './ClassHeader';
+
+import LoggedInHeader from './LoggedInHeader';
 import FavoriteClassList from './FavoriteClassList';
+import LoggedInFooter from './LoggedInFooter';
 
 
 const ClassList = (props)=> {
-    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses, displayFavorites } = props;
-
-    console.log('props in ClassList: ', props);
+    const { isLoggedIn, role, message, classes, setClasses, favoriteClasses, displayFavorites } = props;    
 
     useEffect(() => {
         axiosWithAuth()
             .get('/classes/')          
             .then (resp => {                
-                console.log('resp in ClassList.js: ', resp);
                 setClasses(resp.data);
             })
             .catch(err => {
@@ -32,7 +31,7 @@ const ClassList = (props)=> {
         </nav>            
 
         <div className="container">            
-            <ClassHeader isLoggedIn={isLoggedIn} role={role} message={message} />
+            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} />
             <div className="row ">
                 { (isLoggedIn && displayFavorites) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
                 <div className="col">
@@ -45,14 +44,11 @@ const ClassList = (props)=> {
                             <th>Location</th>                                
                         </tr>
                         </thead>
-                        <tbody>
-                            {/* <div>{ console.log('classes in ClassList:', classes) }</div> */}
-                            {                                
-                                classes.map(session=><ClassListSession key={session.class_id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />)
-                            }
+                        <tbody>                           
+                            {classes.map(session=><ClassListSession key={session.class_id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />) }
                         </tbody>
                     </table>
-                    {/* <MovieFooter totalMovies={movies.length}/> */}
+                    <LoggedInFooter totalClasses={classes.length}/>
                 </div>
 
             </div>

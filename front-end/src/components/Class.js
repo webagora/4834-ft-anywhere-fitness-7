@@ -2,23 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth'
 
-import ClassHeader from './ClassHeader';
+import LoggedInHeader from './LoggedInHeader';
 import FavoriteClassList from './FavoriteClassList';
 
 const Class = (props) => {   
     
-    const {isLoggedIn, role, message, favoriteClasses } = props;
-    
+    const {isLoggedIn, role, message, favoriteClasses, displayFavorites  } = props;    
     const [session, setSession] = useState('');
-
     const { class_id, class_name, intensity_level,class_date, start_time, class_duration, instructor, class_location} = session;
-
     const { id } = useParams();
     const { push } = useHistory();
 
-    console.log('id in Class: ', id);
-
-    
+    console.log('id in Class: ', id);    
 
     useEffect(() => {
             axiosWithAuth()
@@ -55,9 +50,9 @@ const Class = (props) => {
         </nav>
 
         <div className="container">
-            <ClassHeader isLoggedIn={isLoggedIn} role={role} message={message} />
+            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} />
             <div className="row ">
-                {isLoggedIn && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
+            { (isLoggedIn && displayFavorites) && <FavoriteClassList favoriteClasses={favoriteClasses}/>}
     
                 <div className="modal-page col">
                     <div className="modal-dialog">

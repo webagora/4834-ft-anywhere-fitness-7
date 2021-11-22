@@ -6,13 +6,13 @@ const handleClick = () => {
 }
 
 
-const ClassHeader = (props)=> {
+const LoggedInHeader = (props)=> {
     const {displayFavorites, isLoggedIn, role, message} = props;
 
     return(<div className="table-title">
         <div className="row">
         <div className="col-sm-6">
-            {isLoggedIn && <h2>{message}, a {role} </h2>}
+            {isLoggedIn && <h2>{message}, as a {role} </h2>}
             {!isLoggedIn && <h2> Yor are Welcome, wanna to join? </h2>}
         </div>
         <div className="col-sm-6">
@@ -28,4 +28,4 @@ const ClassHeader = (props)=> {
     </div>);
 }
 
-export default ClassHeader;
+export default LoggedInHeader;

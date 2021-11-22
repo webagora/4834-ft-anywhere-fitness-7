@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import "../CSS/Footer.css";
-
+// import "../CSS/Footer.css";
 
 const Footer = () => {
 
     return (
         <div className="footer-section">
             <div className="container">
-                <div className="row">
-                    <div className="col">
+                <div className="">
+                    {/* <div className="col">
                     <Link className="home-button" to='/'>Anywhere Fitness</Link>
                     <Link className="button" to='/classes'>Browse Classes</Link>
                     <Link className="button" to='/login'>Login</Link>
@@ -26,12 +25,12 @@ const Footer = () => {
                             <li>Rongjun Geng</li>
                             <li>Tuan Nguyen</li>
                         </ul>
-                    </div>
+                    </div> */}
                     <hr />
                     <div className="copyright">
-                        <p className="col-sm">
-                            &copy;{new Date().getFullYear()} Anywhere Fitness | All rights reserved | Terms of Service | Privacy
-                        </p>
+                        <div className="col-sm" >
+                        <h4>  &copy; {new Date().getFullYear()} Anywhere Fitness | All rights reserved  </h4>
+                        </div>
                     </div>
                 </div>
                 

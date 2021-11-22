@@ -12,7 +12,7 @@ body {
 }
 
 .footer {
-  background: white;
+  background: #D3D3D3;
   padding: 1em;
 }
 
@@ -229,4 +229,16 @@ table.table .avatar {
 .link-1:hover {
     text-decoration: underline;
     color: black;
+}
+
+.footer-section {
+    color: white;
+    background-color: gray;
+    padding-top: 3em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+    text-align: center;
 }

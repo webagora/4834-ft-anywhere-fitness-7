@@ -27,7 +27,6 @@ export default function Login (props){
             
             axios.post(`https://ft-anywherefitness-7.herokuapp.com/api/auth/login`, login)  
                 .then(resp => {                    
-                    console.log('resp in Login: ', resp);
                     localStorage.setItem('token', resp.data.token);                    
                     localStorage.setItem('role', resp.data.role);
                     localStorage.setItem('message', resp.data.message);
