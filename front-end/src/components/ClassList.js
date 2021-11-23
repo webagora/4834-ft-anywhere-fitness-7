@@ -9,7 +9,7 @@ import LoggedInFooter from './LoggedInFooter';
 
 
 const ClassList = (props)=> {
-    const { isLoggedIn, role, message, classes, setClasses, sideBarClasses, displaySideBar, setDisplaySideBar } = props;    
+    const {classes, setClasses, isLoggedIn, role, message, sideBarClasses, displayUser, displaySideBar,  setDisplaySideBar, setDisplayUser  } = props;    
 
     useEffect(() => {
         axiosWithAuth()
@@ -31,17 +31,18 @@ const ClassList = (props)=> {
         </nav>            
 
         <div className="container">            
-            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
+            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
                 { (isLoggedIn && displaySideBar) && <SideBarClassList role={role}  sideBarClasses={sideBarClasses}/>}
                 <div className="col">
                     <table className="table table-striped table-hover">
                         <thead>
                         <tr>
+                            <th>Class Id</th>
                             <th>Name</th>
                             <th>Intensity</th>
                             <th>Instructor</th>
-                            <th>Location</th>                                
+                            {/* <th>Location</th>                                 */}
                         </tr>
                         </thead>
                         <tbody>                           

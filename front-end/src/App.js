@@ -20,6 +20,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'));
   const [displaySideBar, setDisplaySideBar ] = useState (initialDisplay) ;
+  const [displayUser, setDisplayUser ] = useState (initialDisplay) ;
 
   // const isLoggedIn = localStorage.getItem('token');
   const role = localStorage.getItem('role');
@@ -39,8 +40,8 @@ function App() {
               <Route path="/login"> <Login setIsLoggedIn = { setIsLoggedIn } isLoggedIn = { isLoggedIn } role = {role} message = {message} /> </Route> 
               <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route> 
               {/* <Route path="/register"> <Register /> </Route>  */}
-              <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} />} />
-              <Route path="/users"> <UserList users = { users } setUsers = { setUsers } /> </Route>
+              <Route path="/user" render={props => <User {...props} deleteMovie={deleteUser} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar }  />} />
+              <Route path="/users"> <UserList users = { users } setUsers = { setUsers } message = {message} isLoggedIn = {isLoggedIn} role = {role} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } /> </Route>
 
               <Route path='/classes/add'><AddClassForm classes = {classes} setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar } /></Route> 
 
@@ -51,15 +52,12 @@ function App() {
               />
 
               {/* <Route path="/classes/:id"> <Class classes = { classes } deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role}  /> </Route> */}
-              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } /> </Route>
+              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } /> </Route>
               
-              <Route path="/"> <Redirect to="/classes"/> </Route> 
+              <Route path="/"> <Redirect to="/login"/> </Route> 
         </Switch>
         
-        <div className="footer-page">
-          <Footer/>
-        </div>
-     
+        
     </div>
     
   );

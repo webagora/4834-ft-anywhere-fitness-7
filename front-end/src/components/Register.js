@@ -6,15 +6,13 @@ import axios from 'axios';
 export default function Register (props) {
 
     const [submitted, setSubmitted] = useState(false);
-
     const [error, setError] = useState(false);
-
     const { push } = useHistory();
 
     const [newUser, setNewUser] = useState({
         username: '',
         password: '',
-        department: ''
+        role: ''
     })
 
     const handleChange = (e) => {
@@ -42,8 +40,7 @@ export default function Register (props) {
         } 
         // else {
         //     setSubmitted(true);
-        //     setError(false);
-            
+        //     setError(false);            
         // }
     };
 
@@ -122,7 +119,8 @@ export default function Register (props) {
                     <input 
                         type="text"
                         name="auth_code"
-                        placeholder="auth_instructor_123"
+                        placeholder="type your auth_code"
+                        // placeholder="auth_instructor_123"
                         value={newUser.auth_code}
                         onChange={handleChange}
                     />

@@ -1,22 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MovieListItem = (props)=> {
+const UserListItem = (props)=> {
     
     const { user_id, username, role_type} = props.user;
 
-    return(<div className="class-wrapper">
-            <div>
-                <h5> {user_id} </h5>            
-                <h5> {username} </h5>
-                <h5> {role_type} </h5>                 
-            </div>
-            
-            <Link to={`/user`} >
-                <input type="button" value="View"/>
-            </Link>
-        </div>
-        );
+    console.log('props in UserListItem: ', props);
+
+    return(        
+
+        <tr key={user_id}>
+            <td>{user_id}</td>
+            <td>{username}</td>
+            <td>{role_type}</td>            
+            <td>
+                <Link to={`/users/${user_id}`} className="view"> <input type="button" className="btn btn-secondary" value="View"/> </Link>          
+            </td>
+        </tr>
+
+    );
 }
 
-export default MovieListItem;
+export default UserListItem;

@@ -21,19 +21,7 @@ const User = (props) => {
 
     console.log('suer in User', user);
 
-    const handelDelete = ()=> {       
-        // axios.delete(`http://localhost:5000/api/movies/${id}`)
-        //     .then(res=>{
-        //         console.log('res in delete: ', res);                
-        //         console.log('props in delete: ', props);  
-        //         //	Update local storage with our new movie list  
-		// 	    props.deleteMovie(id);
-		// 	    //	Redirect the user to the movie list page.
-		// 	    push (`/movies`);             
-        //     })
-        //     .catch(err=>{
-        //         console.log(err.response);
-        //     })
+    const handelDelete = ()=> {        
        }
 
     return(<div className="class-wrapper">        						

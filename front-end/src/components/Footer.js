@@ -29,9 +29,9 @@ const Footer = () => {
                     </div> */}
                     <hr />
                     <div className="copyright">
-                        <div className="col-sm" >
+                        {/* <div className="col-sm" > */}
                         <h4>  &copy; {new Date().getFullYear()} Anywhere Fitness | All rights reserved  </h4>
-                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
                 

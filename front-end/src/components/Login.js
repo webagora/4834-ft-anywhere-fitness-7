@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import Footer from './Footer';
+
+// import "../CSS/Login.css";
+
 // can not replace real url in post, figure out later
 import { BASE_URL, API_KEY } from '../utils/URL';  
 
@@ -45,37 +49,44 @@ export default function Login (props){
                 <div className="right-links"> { !props.isLoggedIn  && <div className="link"  > <Link className="link"  to='/register' ><h4>Register</h4></Link></div>} </div> 
             </nav>   
                     
-                <div  >
-                     
-                    <div >                             
-                        <form onSubmit={handleSubmit} >
-                            <h1 >Please sign in</h1>
-                            <label htmlFor="username" > 
-                                <input 
-                                    type="text"
-                                    name="username"
-                                    placeholder="Enter your username"
-                                    value={login.username}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                            <label htmlFor="password">
-                                <input 
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter your password"
-                                    value={login.password}
-                                    onChange={handleChange}
-                                />
-                            </label>
+                <div className="login-container">                     
+                    <div className="login-card">   
+                        <h1 >Please sign in</h1>                          
+                        <form className="login-form" onSubmit={handleSubmit} >
+                            <div className="login-inputs">    
+                                <label htmlFor="username" > 
+                                    <input 
+                                        type="text"
+                                        name="username"
+                                        placeholder="Enter your username"
+                                        value={login.username}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div> 
+                            <div className="login-inputs"> 
+                                <label htmlFor="password">
+                                    <input 
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        value={login.password}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
                             <button >Login</button>
-                        </form> 
                             <div>Don't have an account?
-                            <button ><Link className="link-1" to='/register'>Register</Link></button> 
-                            
-                            </div>                    
+                            <button ><Link className="link-1" to='/register'>Register</Link></button> </div>  
+                        </form>                             
+                                              
                     </div > 
                 </div>
+
+            <div >
+                <Footer/>
+            </div>
+     
             
         </>)
 }
