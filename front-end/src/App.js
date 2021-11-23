@@ -12,15 +12,14 @@ import {Route, Switch, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 import { element } from "prop-types";
 
-const initialDisplay = false;
-
 function App() {  
 
   // To carry the whole classes 
   const [classes, setClasses] = useState([]);
   const [users, setUsers] = useState([]);  
+   
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'));
-  const [displaySideBar, setDisplaySideBar ] = useState (initialDisplay) ;
+  const [displaySideBar, setDisplaySideBar ] = useState (false) ;
   const [displayUser, setDisplayUser ] = useState (false) ;
 
   // const isLoggedIn = localStorage.getItem('token');
@@ -39,8 +38,6 @@ function App() {
         element.username === query;
     })
   }
-
-  // console.log('findLoggedInUser in APP: ', findLoggedInUser(username));
   
   return (
     <div className="App">     
@@ -51,10 +48,10 @@ function App() {
               <Route path="/login"> <Login setIsLoggedIn = { setIsLoggedIn } isLoggedIn = { isLoggedIn } role = {role} message = {message} displayUser = {displayUser} /> </Route> 
               <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route>               
               <Route path="/user" render={props => <User {...props} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar }  />} />              
-              <Route path="/users"> <UserList 
+              <Route path="/users"> 
+                <UserList 
                   users = { users } 
-                  setUsers = { setUsers }  
-                  findLoggedInUser = {findLoggedInUser}
+                  setUsers = { setUsers }                  
                   message = {message} 
                   isLoggedIn = {isLoggedIn} 
                   role = {role} 
@@ -63,10 +60,41 @@ function App() {
                   displaySideBar = {displaySideBar} s
                   etDisplaySideBar = {setDisplaySideBar } /> 
               </Route>
-
-              <Route path='/classes/add'><AddClassForm classes = {classes} setClasses={setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar }/></Route> 
-              <Route path="/classes/:id"><Class deleteClass={deleteClass} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar }  /> </Route>
-              <Route exact path="/classes"> <ClassList classes = { classes } setClasses = { setClasses} message = {message} isLoggedIn = {isLoggedIn} role = {role} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } /> </Route>              
+              <Route path='/classes/add'>
+                <AddClassForm 
+                  classes = {classes} 
+                  setClasses={setClasses} 
+                  message = {message} 
+                  isLoggedIn = {isLoggedIn} 
+                  role = {role} 
+                  displayUser = {displayUser} 
+                  setDisplayUser = {setDisplayUser} 
+                  displaySideBar = {displaySideBar} 
+                  setDisplaySideBar = {setDisplaySideBar }/>
+              </Route> 
+              <Route path="/classes/:id">
+                <Class
+                  users = { users } 
+                  setUsers = { setUsers }   
+                  deleteClass={deleteClass} 
+                  message = {message} 
+                  isLoggedIn = {isLoggedIn} 
+                  role = {role} 
+                  displaySideBar = {displaySideBar}  
+                  setDisplaySideBar = {setDisplaySideBar }  /> 
+              </Route>
+              <Route exact path="/classes"> 
+                <ClassList                   
+                  classes = { classes } 
+                  setClasses = { setClasses} 
+                  message = {message} 
+                  isLoggedIn = {isLoggedIn} 
+                  role = {role} 
+                  displayUser = {displayUser} 
+                  setDisplayUser = {setDisplayUser} 
+                  displaySideBar = {displaySideBar} 
+                  setDisplaySideBar = {setDisplaySideBar } /> 
+              </Route>              
               <Route path="/"> <Redirect to="/login"/> </Route> 
         </Switch>
         

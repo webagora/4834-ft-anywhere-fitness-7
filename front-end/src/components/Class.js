@@ -5,25 +5,33 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 import LoggedInHeader from './LoggedInHeader';
 import SideBarClassList from './SideBarClassList';
 
-const Class = (props) => {   
-    
+const Class = (props) => {    
+
     const {isLoggedIn, role, message, sideBarClasses, displaySideBar, setDisplaySideBar  } = props;    
     const [session, setSession] = useState('');
     const { class_id, class_name, intensity_level,class_date, start_time, class_duration, instructor, class_location} = session;
     const { id } = useParams();
-    const { push } = useHistory();
-
-    console.log('id in Class: ', id);    
+    const { push } = useHistory();       
     
     useEffect(() => {
+
             axiosWithAuth()
-            .get(`/classes/${id}`)          
-            .then (resp => {                
-                setSession(resp.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                .get(`/classes/${id}`)          
+                .then (resp => {                
+                    setSession(resp.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+            axiosWithAuth()
+                .get('/users/')          
+                .then (resp => {                  
+                    props.setUsers(resp.data);                              
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             
     }, [id]);
       
@@ -40,7 +48,21 @@ const Class = (props) => {
                 console.log(err);
             })  
            
-    }     
+    }   
+
+    const handelJoin = () => {
+        console.log('I am click Join class button');
+
+        const username = localStorage.getItem('username');
+        console.log('props.users in Class handelJoin: ', [props.users]);
+        console.log('username in Class handelJoin: ', username);
+        const loggedInUser = props.users.filter(user => user.username === username);
+
+        console.log('loggedInUser in Class handelJoin', loggedInUser);    
+        console.log('user_id in Class handelJoin: ', loggedInUser[0].user_id); 
+        console.log('class_id in Class handelJoin: ', id);
+
+    }    
    
     return(<>
         <nav className="nav-bar">
@@ -78,7 +100,7 @@ const Class = (props) => {
                                     <section>
                                         <div>
                                             {(role === 'instructor' && isLoggedIn) && <span className="m-2 btn btn-dark">Favorite</span>}                                                
-                                            {(role === 'client' && isLoggedIn) && <span className="m-2 btn btn-dark">Join Class</span>}                                                
+                                            {(role === 'client' && isLoggedIn) && <span onClick = {handelJoin}  className="m-2 btn btn-dark">Join Class</span>}                                                
                                             {(role === 'instructor' && isLoggedIn) && <Link to={`/classes/${class_id}`} className="m-2 btn btn-success">Edit</Link>}
                                             {(role === 'instructor' && isLoggedIn) && <span className="delete" onClick = {handelDelete}  ><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>}
                                             

@@ -36,9 +36,7 @@ export default function Login (props){
                     localStorage.setItem('role', resp.data.role);
                     localStorage.setItem('message', resp.data.message);
                     localStorage.setItem('username', login.username);
-                    props.setIsLoggedIn(localStorage.getItem('token'));    
-                    console.log('login.username in Login axios: ', login.username);  
-                    // props.findLoggedInUser();
+                    props.setIsLoggedIn(localStorage.getItem('token')); 
                     props.displayUser ? push(`/users`) : push(`/classes`) ;               
                 })
                 .catch(err => {

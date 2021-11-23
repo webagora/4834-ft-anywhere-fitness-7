@@ -17,14 +17,8 @@ export default function Users (props) {
     useEffect(() => {
         axiosWithAuth()
             .get('/users/')          
-            .then (resp => {  
-                console.log('resp in UserList:', resp);                           
-                setUsers(resp.data);  
-                const username = localStorage.getItem('username');
-                console.log('users in UserList inside axios: ', users);
-                const loggedInUser = users.filter(user => user.username === username);
-                
-                console.log('loggedInUser: ', loggedInUser);                                  
+            .then (resp => {                  
+                setUsers(resp.data);                
             })
             .catch(err => {
                 console.log(err);
@@ -55,14 +49,7 @@ export default function Users (props) {
                         </tr>
                         </thead>
                         <tbody>                           
-                            {users.map(user=><UserListItem key={user.user_id} user={user} message = {message} isLoggedIn = {isLoggedIn} role = {role}/>)}
-                            
-                            {users.map(user => {
-                                return (<>
-                                    {/* <p>{console.log('user in map: ', user)}</p>
-                                    <p>{console.log('username in : ', username)}</p> */}
-                                    { (user.username === userName) }                                    
-                                </>);   })}                            
+                            {users.map(user=><UserListItem key={user.user_id} user={user} message = {message} isLoggedIn = {isLoggedIn} role = {role}/>)}                                                   
                         </tbody>   
                     </table>
                     {/* <LoggedInFooter totalClasses={classes.length}/> */}

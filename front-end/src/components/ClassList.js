@@ -11,7 +11,9 @@ import LoggedInFooter from './LoggedInFooter';
 const ClassList = (props)=> {
     const {classes, setClasses, isLoggedIn, role, message, sideBarClasses, displayUser, displaySideBar,  setDisplaySideBar, setDisplayUser  } = props;    
 
+    console.log('props in ClassList: ', props);
     useEffect(() => {
+
         axiosWithAuth()
             .get('/classes/')          
             .then (resp => {                
@@ -19,7 +21,8 @@ const ClassList = (props)=> {
             })
             .catch(err => {
                 console.log(err);
-            })
+            });        
+
       }, []);
 
     return (<>
@@ -46,7 +49,16 @@ const ClassList = (props)=> {
                         </tr>
                         </thead>
                         <tbody>                           
-                            {classes.map(session=><ClassListSession key={session.class_id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />) }
+                            {/* {classes.map(session=><ClassListSession key={session.class_id} session={session} message = {message} isLoggedIn = {isLoggedIn} role = {role} />) } */}
+                            {classes.map(session=>{
+                                return <ClassListSession 
+                                    key={session.class_id}                                     
+                                    session={session} 
+                                    message = {message} 
+                                    isLoggedIn = {isLoggedIn} 
+                                    role = {role} />
+                                }) 
+                            }
                         </tbody>
                     </table>
                     <LoggedInFooter totalClasses={classes.length}/>
