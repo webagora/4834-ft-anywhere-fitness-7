@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserListItem from "./UserListItem";
+import User from './User';
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -18,12 +19,17 @@ export default function Users (props) {
             .get('/users/')          
             .then (resp => {  
                 console.log('resp in UserList:', resp);                           
-                setUsers(resp.data);
+                setUsers(resp.data);                                
             })
             .catch(err => {
                 console.log(err);
             })
     }, []);
+
+    const username = localStorage.getItem('username');
+    //             console.log('username UserList axios: ',  username ); 
+    //             props.findLoggedInUser(username);
+    //             console.log('props.findLoggedInUser(username): ', props.findLoggedInUser(username));
     
     return(<>
         
@@ -48,8 +54,18 @@ export default function Users (props) {
                         </tr>
                         </thead>
                         <tbody>                           
-                            {users.map(user=><UserListItem key={user.user_id} user={user} message = {message} isLoggedIn = {isLoggedIn} role = {role}/>)}
-                        </tbody>
+                            {/* {users.map(user=><UserListItem key={user.user_id} user={user} message = {message} isLoggedIn = {isLoggedIn} role = {role}/>)} */}
+                            
+                            {users.map (user => {
+                                return (<>
+                                    <p>{console.log('user in map: ', user)}</p>
+                                    <p>{console.log('username in : ', username)}</p>
+
+                                    { (user.username === username) && <User key={user.user_id} user={user} message = {message} isLoggedIn = {isLoggedIn} role = {role}/>}
+                                </>);
+                            })}
+                            
+                        </tbody>   
                     </table>
                     {/* <LoggedInFooter totalClasses={classes.length}/> */}
                 </div>

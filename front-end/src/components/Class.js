@@ -14,7 +14,7 @@ const Class = (props) => {
     const { push } = useHistory();
 
     console.log('id in Class: ', id);    
-
+    
     useEffect(() => {
             axiosWithAuth()
             .get(`/classes/${id}`)          
@@ -40,7 +40,7 @@ const Class = (props) => {
                 console.log(err);
             })  
            
-    }
+    }     
    
     return(<>
         <nav className="nav-bar">

@@ -5,8 +5,6 @@ const UserListItem = (props)=> {
     
     const { user_id, username, role_type} = props.user;
 
-    console.log('props in UserListItem: ', props);
-
     return(        
 
         <tr key={user_id}>
