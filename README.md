@@ -62,3 +62,14 @@ Instructors can take attendance, request and process payments, create virtual â€
 ## [<p align="center">front-end readme</p>](./front-end/README.md)
 
 ## [<p align="center">back-end endpoints API</p>](./back-end/README.md)
+
+## Login Information
+
+{
+  "username": "tom",   // jerry, garfield, odie
+  "password": "password",  
+}
+{
+  "username": "beatlesm", beatlesmxxx beatlesmxxxx
+  "password": "abc123",  
+}

@@ -35,7 +35,7 @@ export default function Login (props){
                     localStorage.setItem('role', resp.data.role);
                     localStorage.setItem('message', resp.data.message);
                     props.setIsLoggedIn(localStorage.getItem('token'));      
-                    push(`/classes`);                 
+                    props.displayUser ? push(`/users`) : push(`/classes`) ;               
                 })
                 .catch(err => {
                     console.log(err);                

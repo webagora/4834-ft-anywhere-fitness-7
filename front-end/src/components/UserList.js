@@ -11,6 +11,8 @@ export default function Users (props) {
 
     const { users, setUsers, isLoggedIn, role, message , displayUser, displaySideBar,  setDisplaySideBar, setDisplayUser } = props;
 
+    const sideBarClasses = [];
+
     useEffect(() => {
         axiosWithAuth()
             .get('/users/')          
@@ -32,9 +34,10 @@ export default function Users (props) {
         </nav>            
 
         <div className="container">            
-            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar  } />
+        <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
                 { (isLoggedIn && displaySideBar) && <SideBarClassList role={role}  sideBarClasses={sideBarClasses}/>}
+
                 <div className="col">
                     <table className="table table-striped table-hover">
                         <thead>

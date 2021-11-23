@@ -6,7 +6,7 @@ import LoggedInHeader from './LoggedInHeader';
 import SideBarClassList from './SideBarClassList';
 
 const AddClassForm = (props) => {
-    const {isLoggedIn, role, message, classes, setClasses, favoriteClasses, displaySideBar, setDisplaySideBar } = props;
+    const {isLoggedIn, role, message, classes, setClasses, favoriteClasses, sideBarClasses, displayUser, displaySideBar,  setDisplaySideBar, setDisplayUser  } = props;
 
     const { push } = useHistory();
  
@@ -56,10 +56,10 @@ const AddClassForm = (props) => {
         </nav>
 
         <div className="container">
-        <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
+        <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displaySideBar) && <SideBarClassList sideBarClasses={sideBarClasses}/>}
-        
+                { (isLoggedIn && displaySideBar) && <SideBarClassList role={role}  sideBarClasses={sideBarClasses}/>}
+
                 <div className="col">
                     <div className="modal-dialog">
                         <div className="modal-content">

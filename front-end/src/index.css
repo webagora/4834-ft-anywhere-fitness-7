@@ -251,7 +251,8 @@ table.table .avatar {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #E5DCC3;
+  /* background-color: #E5DCC3; */
+  background-color: lightgrey;
   border-radius: 6px;
   width: 40%;
 }
