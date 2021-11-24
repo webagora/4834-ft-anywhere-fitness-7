@@ -66,13 +66,23 @@ const Class = (props) => {
         const newJoin = {
             "user_id": loggedInUser[0].user_id,
             "class_id": id
-          }
-               
+          }        
+
+        axiosWithAuth()
+            .get(`/user`)          
+            .then (resp => {      
+                console.log('resp in get: ', resp);
+                // push(`/classes`);  
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
         axiosWithAuth()
             .post(`/classes/signup`, newJoin)          
             .then (resp => {      
                 console.log('resp: ', resp);
-                
+                push(`/classes`);  
             })
             .catch(err => {
                 console.log(err);
@@ -116,8 +126,10 @@ const Class = (props) => {
                                     <section>
                                         <div>
                                             {(role === 'instructor' && isLoggedIn) && <span className="m-2 btn btn-dark">Favorite</span>}                                                
-                                            {(role === 'client' && isLoggedIn) && <span onClick = {handelJoin}  className="m-2 btn btn-dark">Join Class</span>}                                                
-                                            {(role === 'instructor' && isLoggedIn) && <Link to={`/classes/${class_id}`} className="m-2 btn btn-success">Edit</Link>}
+                                            {(role === 'client' && isLoggedIn) && <span className="m-2 btn btn-dark">Favorite</span>}                                                
+                                            {(isLoggedIn) && <span onClick = {handelJoin}  className="m-2 btn btn-dark">Join Class</span>}   
+                                            {(role === 'instructor' && isLoggedIn) && <Link to={`/classes/${class_id}`}  className="m-2 btn btn-success">Edit</Link>}
+                                            {/* {(role === 'client' && isLoggedIn) && <Link to={`/classes/`} className="m-2 btn btn-dark">Join Class</Link>} */}
                                             {(role === 'instructor' && isLoggedIn) && <span className="delete" onClick = {handelDelete}  ><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>}
                                             
                                             {!isLoggedIn && <Link to={`/classes/`} className="view"> <input type="button" className="btn btn-secondary" value="View All Classes"/> </Link>}

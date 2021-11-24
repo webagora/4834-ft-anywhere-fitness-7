@@ -46,15 +46,25 @@ In this project you'll choose an api to consume. You will build an application f
 
 Take the app as far as you can go! Styling, redux hooks, another API, an input to fetch data dynamically, etc. Work on it, improve it until the end of the day. If you find yourself finishing with time left to spare, jump on with your TL or fellow student to ask them what feature they think you should build next. Good luck!
 
-## Login Information
-
+## Login Information - instructor 
+```
 {
-  "username": "tom",   // jerry, garfield, odie
-  "password": "password",  
+  "username": "tom",   // jerry
+  "password": "password"  
 }
 {
-  "username": "beatlesm", beatlesmxxx beatlesmxxxx
-  "password": "abc123",  
+  "username": "beatlesm", // beatlesm234  beatlesm567 beatlesm012 beatlesm999 beatlesm9999 beatlesm8888 beatlesm7777
+  "password": "abc123"  
 }
-
-
+```
+## Login Information - client  
+```
+{
+  "username": "garfield",   // odie
+  "password": "password"  
+}
+{
+  "username": "beatlesm123", // beatlesm456 beatlesm789 beatlesm101 beatlesm121
+  "password": "abc123" 
+}
+```

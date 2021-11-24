@@ -85,3 +85,4 @@ Instructors can take attendance, request and process payments, create virtual â€
   "password": "abc123" 
 }
 ```
+
