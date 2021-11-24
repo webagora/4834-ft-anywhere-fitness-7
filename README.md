@@ -58,6 +58,10 @@ Instructors can take attendance, request and process payments, create virtual â€
 
 1. Implement payments using PayPal, Stripe or another 3rd party API.
 
+2. [Redux React Module Project: CRUD](./front-end/redux.md)
+
+2. [HTTP / AJAX II React Module Project: CRUD](./front-end/HTTP.md)
+
 
 ## [<p align="center">front-end readme</p>](./front-end/README.md)
 
