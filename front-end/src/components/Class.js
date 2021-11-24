@@ -7,7 +7,7 @@ import SideBarClassList from './SideBarClassList';
 
 const Class = (props) => {    
 
-    const {isLoggedIn, role, message, sideBarClasses, displaySideBar, setDisplaySideBar  } = props;    
+    const {isLoggedIn, role, message, sideBarClasses, displayUser, setDisplayUser, displaySideBar,  setDisplaySideBar  } = props;    
     const [session, setSession] = useState('');
     const { class_id, class_name, intensity_level,class_date, start_time, class_duration, instructor, class_location} = session;
     const { id } = useParams();
@@ -50,7 +50,8 @@ const Class = (props) => {
            
     }   
 
-    const handelJoin = () => {
+    const handelJoin = (e) => {
+        e.preventDefault(); 
         console.log('I am click Join class button');
 
         const username = localStorage.getItem('username');
@@ -62,6 +63,21 @@ const Class = (props) => {
         console.log('user_id in Class handelJoin: ', loggedInUser[0].user_id); 
         console.log('class_id in Class handelJoin: ', id);
 
+        const newJoin = {
+            "user_id": loggedInUser[0].user_id,
+            "class_id": id
+          }
+               
+        axiosWithAuth()
+            .post(`/classes/signup`, newJoin)          
+            .then (resp => {      
+                console.log('resp: ', resp);
+                
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }    
    
     return(<>
@@ -72,15 +88,15 @@ const Class = (props) => {
         </nav>
 
         <div className="container">
-            <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
+        <LoggedInHeader isLoggedIn={isLoggedIn} role={role} message={message} displayUser = {displayUser} setDisplayUser = {setDisplayUser} displaySideBar = {displaySideBar} setDisplaySideBar = {setDisplaySideBar } />
             <div className="row ">
-                { (isLoggedIn && displaySideBar) && <SideBarClassList sideBarClasses={sideBarClasses}/>}
+                { (isLoggedIn && displaySideBar) && <SideBarClassList role={role}  sideBarClasses={sideBarClasses}/>}
     
                 <div className="modal-page col">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">	
-                            <h4 className="modal-title">{session.class_name} Details</h4> 
+                            <h4 className="modal-title">{session.class_name}</h4> 
                             </div>
                             <div className="modal-body">
                                 <div className="flexContainer"> 

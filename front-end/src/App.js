@@ -45,9 +45,26 @@ function App() {
         <Switch>
               {/* <Route exact path="/"> <Home  /> </Route>         */}
               {/* <Route path="/register"> <Register /> </Route>  */}
-              <Route path="/login"> <Login setIsLoggedIn = { setIsLoggedIn } isLoggedIn = { isLoggedIn } role = {role} message = {message} displayUser = {displayUser} /> </Route> 
-              <Route path="/logout"> <Logout setIsLoggedIn = { setIsLoggedIn } /> </Route>               
-              <Route path="/user" render={props => <User {...props} message = {message} isLoggedIn = {isLoggedIn} role = {role} displaySideBar = {displaySideBar}  setDisplaySideBar = {setDisplaySideBar }  />} />              
+              <Route path="/login"> 
+                <Login 
+                  setIsLoggedIn = { setIsLoggedIn } 
+                  isLoggedIn = { isLoggedIn } 
+                  role = {role} 
+                  message = {message} 
+                  displayUser = {displayUser} /> 
+              </Route> 
+              <Route path="/logout"> 
+                <Logout 
+                  setIsLoggedIn = { setIsLoggedIn } /> 
+              </Route>               
+              <Route path="/user"> 
+                <User 
+                  message = {message} 
+                  isLoggedIn = {isLoggedIn} 
+                  role = {role} 
+                  displaySideBar = {displaySideBar}  
+                  setDisplaySideBar = {setDisplaySideBar } /> 
+              </Route>              
               <Route path="/users"> 
                 <UserList 
                   users = { users } 
@@ -80,8 +97,10 @@ function App() {
                   message = {message} 
                   isLoggedIn = {isLoggedIn} 
                   role = {role} 
-                  displaySideBar = {displaySideBar}  
-                  setDisplaySideBar = {setDisplaySideBar }  /> 
+                  displayUser = {displayUser} 
+                  setDisplayUser = {setDisplayUser} 
+                  displaySideBar = {displaySideBar} s
+                  etDisplaySideBar = {setDisplaySideBar } /> 
               </Route>
               <Route exact path="/classes"> 
                 <ClassList                   
